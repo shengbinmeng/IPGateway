@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IPGateway</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="username_hint">username</string>
+    <string name="password_hint">password</string>
+    <string name="global_access">Global Access</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="login">Let Me In</string>
+    <string name="logout">Logout</string>
+    <string name="title">Login to IP gateway of PKU</string>
+
+</resources>

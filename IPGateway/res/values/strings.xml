@@ -11,5 +11,7 @@
     <string name="login">Let Me In</string>
     <string name="logout">Logout</string>
     <string name="title">Login to IP gateway of PKU</string>
+    <string name="welcome">Welcome!</string>
+    
 
 </resources>

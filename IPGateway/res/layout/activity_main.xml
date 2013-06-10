@@ -7,11 +7,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     >
-<RelativeLayout
+    
+    <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".MainActivity" >
-    
+
 	<TextView
 	    android:id="@+id/textView_title"
 	    android:layout_width="wrap_content"
@@ -20,7 +21,8 @@
 	    android:layout_centerHorizontal="true"
 	    android:layout_marginTop="25dp"
 	    android:text="@string/title"
-	    android:textAppearance="?android:attr/textAppearanceLarge" />
+	    android:textAppearance="?android:attr/textAppearanceLarge">
+	</TextView>
 
 	<EditText
         android:id="@+id/editText_user"
@@ -30,9 +32,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="@string/username_hint" />
+        android:hint="@string/username_hint">
+   	</EditText>
 
-    <EditText
+   	<EditText
         android:id="@+id/editText_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,8 +45,6 @@
         android:ems="10"
         android:hint="@string/password_hint"
         android:inputType="textPassword" >
-
-        <requestFocus />
     </EditText>
     
     <CheckBox
@@ -78,25 +79,23 @@
         android:id="@+id/button_logout"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText_message"
+        android:layout_alignRight="@+id/textView_message"
         android:layout_below="@+id/checkBox_global"
         android:layout_marginTop="18dp"
         android:text="@string/logout" />
 
-	<EditText
-        android:id="@+id/editText_message"
+	<TextView
+        android:id="@+id/textView_message"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_login"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
         android:clickable="false"
-        android:cursorVisible="false"
         android:ems="10"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:inputType="text|textMultiLine|textLongMessage" >
-    </EditText>
+        android:focusableInTouchMode="false">
+    </TextView>
 
 </RelativeLayout>
 </ScrollView>

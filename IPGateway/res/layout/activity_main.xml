@@ -65,28 +65,27 @@
         android:layout_marginTop="17dp"
         android:text="@string/global_access" />
 
-    <Button
-        android:id="@+id/button_login"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button_logout"
-        android:layout_alignBottom="@+id/button_logout"
-        android:layout_alignLeft="@+id/textView_title"
-        android:layout_marginLeft="10dp"
-        android:text="@string/login" />
+	<Button
+	    android:id="@+id/button_logout"
+	    android:layout_width="120dp"
+	    android:layout_height="wrap_content"
+	    android:layout_alignRight="@+id/textView_title"
+	    android:layout_below="@+id/checkBox_global"
+	    android:layout_marginTop="19dp"
+	    android:text="@string/logout" />
 
-    <Button
-        android:id="@+id/button_logout"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView_message"
-        android:layout_below="@+id/checkBox_global"
-        android:layout_marginTop="18dp"
-        android:text="@string/logout" />
-
-	<TextView
-        android:id="@+id/textView_message"
-        android:layout_width="250dp"
+	<Button
+	    android:id="@+id/button_login"
+	    android:layout_width="120dp"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/button_logout"
+	    android:layout_alignBottom="@+id/button_logout"
+	    android:layout_alignLeft="@+id/textView_title"
+	    android:text="@string/login" />
+	
+	<WebView
+        android:id="@+id/webView_message"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_login"
         android:layout_centerHorizontal="true"
@@ -95,7 +94,7 @@
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false">
-    </TextView>
+    </WebView>
 
 </RelativeLayout>
 </ScrollView>

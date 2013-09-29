@@ -14,15 +14,15 @@ import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
-	private TextView messageArea = null;
+	private WebView messageArea = null;
 	private EditText editUser, editPass;
 	private boolean login = false;
 	
@@ -31,8 +31,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        messageArea = (TextView) this.findViewById(R.id.textView_message);
-        messageArea.setText(R.string.welcome);
+        messageArea = (WebView) this.findViewById(R.id.webView_message);
+        String message = this.getString(R.string.welcome);
+        messageArea.loadData(message, "text/html; charset=UTF-8", null);
       
     	editUser = (EditText) this.findViewById(R.id.editText_user);
     	editPass = (EditText) this.findViewById(R.id.editText_pass);
@@ -103,15 +104,18 @@ public class MainActivity extends Activity {
     	String password = editPass.getText().toString();
     	
 	    if (username.isEmpty() || password.isEmpty()) {
-	    	messageArea.setText("Input username and password!");
+	    	String message = "Input username and password!";
+	        messageArea.loadData(message, "text/html; charset=UTF-8", null);
+
 			return ;
 	    }
 	    
-	    messageArea.setText("Logging in...");
+	    String message = "Logging in...";
+        messageArea.loadData(message, "text/html; charset=UTF-8", null);
 	    
 	    int range = 2;
 	    if (((CheckBox) MainActivity.this.findViewById(R.id.checkBox_global)).isChecked()) {
-	    	range = 3;
+	    	range = 1;
 	    }
     	String loginUrl = "https://its.pku.edu.cn:5428/ipgatewayofpku?uid=" + username + "&password=" + password + "&operation=connect&range=" + range + "&timeout=2";
 	    new IPGatewayLoginTask().execute(loginUrl);
@@ -147,27 +151,34 @@ public class MainActivity extends Activity {
 	        	editor.commit();
         	}
         	
-            messageArea.setText(result);
-            
-            login = true;
+        	int start = result.indexOf("<table");
+        	int end = result.lastIndexOf("</table>") + 8;
+        	String table = result.substring(start, end);
+        	
+        	String message = table;
+	        messageArea.loadData(message, "text/html; charset=UTF-8", null);
+	        
+	        login = true;
        }
     }
     
     public void doLogout() {
     	
     	if (login == false) {
-    		messageArea.setText("No Successful Login!");
+    	    String message = "No Successful Login!";
+            messageArea.loadData(message, "text/html; charset=UTF-8", null);
 			return ;
     	}
     	
-	    messageArea.setText("Logging out...");
+    	String message = "Logging out...";
+        messageArea.loadData(message, "text/html; charset=UTF-8", null);
 
     	String username = editUser.getText().toString();
     	String password = editPass.getText().toString();
     	
     	int range = 2;
 	    if (((CheckBox) MainActivity.this.findViewById(R.id.checkBox_global)).isChecked()) {
-	    	range = 3;
+	    	range = 1;
 	    }
     	String logoutUrl = "https://its.pku.edu.cn:5428/ipgatewayofpku?uid=" + username + "&password=" + password + "&operation=disconnect&range=" + range + "&timeout=2";
     	new IPGatewayLogoutTask().execute(logoutUrl);
@@ -181,7 +192,6 @@ public class MainActivity extends Activity {
             try {
 				content = new String(byteArray, "GBK");
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             return content;
@@ -202,7 +212,13 @@ public class MainActivity extends Activity {
 	            editUser.setText("");
 	            editPass.setText("");
         	}
-            messageArea.setText(result);
+        	
+        	int start = result.indexOf("<table");
+        	int end = result.lastIndexOf("</table>") + 8;
+        	String table = result.substring(start, end);
+        	
+        	String message = table;
+	        messageArea.loadData(message, "text/html; charset=UTF-8", null);
             
             login = false;
        }

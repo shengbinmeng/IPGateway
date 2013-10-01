@@ -3,6 +3,7 @@ package pku.shengbin.ipgateway;
 import java.io.UnsupportedEncodingException;
 
 import pku.shengbin.utils.HttpAccessor;
+import pku.shengbin.utils.MessageBox;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
@@ -129,7 +131,9 @@ public class MainActivity extends Activity {
             byte[] byteArray = HttpAccessor.getContentBytesFromUrl(urls[0]);
             String content = "";
             try {
-				content = new String(byteArray, "GBK");
+            	if (byteArray != null) {
+    				content = new String(byteArray, "GBK");
+            	}
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -151,14 +155,46 @@ public class MainActivity extends Activity {
 	        	editor.commit();
         	}
         	
-        	int start = result.indexOf("<table");
-        	int end = result.lastIndexOf("</table>") + 8;
-        	String table = result.substring(start, end);
+        	String message = "Something wrong! Sorry.";
+        	if (result.isEmpty()) {
+        		message = "No data returned!";
+        	} else {
+        		int start = result.indexOf("<!--IPGWCLIENT_START ") + "<!--IPGWCLIENT_START ".length();
+        		int end = result.indexOf("<IPGWCLIENT_END-->");
+        		if (end != -1) {
+            		String information = result.substring(start, end);
+        			String success = information.substring(0, 10);
+        			if (success.equals("SUCCESS=YES")) {
+        				login = true;
+        			} else if (information.substring(information.indexOf("REASON=")).contains("连接数超过")){
+        				DialogInterface.OnClickListener ok_listener = new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								// TODO Auto-generated method stub
+							}
+        				};
+        				DialogInterface.OnClickListener cancel_listener = new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface arg0, int arg1) {
+								// TODO Auto-generated method stub
+							}
+        				};
+        				MessageBox.show(MainActivity.this, "提示", "你已经达到最大连接数。是否断开其他连接并在此终端上重新连接？", ok_listener, cancel_listener);
+        			}
+        			
+        			start = result.indexOf("<table");
+                	end = result.lastIndexOf("</table>") + "</table>".length();
+                	if (start != -1) {
+                		String table = result.substring(start, end);
+                		message = table;
+                	}
+        			
+        		} else {
+        			message = "No information returned!";
+        		}
+        	}     
         	
-        	String message = table;
 	        messageArea.loadData(message, "text/html; charset=UTF-8", null);
-	        
-	        login = true;
        }
     }
     
@@ -190,12 +226,13 @@ public class MainActivity extends Activity {
             byte[] byteArray = HttpAccessor.getContentBytesFromUrl(urls[0]);
             String content = "";
             try {
-				content = new String(byteArray, "GBK");
+            	if (byteArray != null) {
+    				content = new String(byteArray, "GBK");
+            	}
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
             return content;
-
         }
         
         // onPostExecute displays the results of the AsyncTask.
@@ -213,14 +250,30 @@ public class MainActivity extends Activity {
 	            editPass.setText("");
         	}
         	
-        	int start = result.indexOf("<table");
-        	int end = result.lastIndexOf("</table>") + 8;
-        	String table = result.substring(start, end);
+        	String message = "Something wrong! Sorry.";
+        	if (result.isEmpty()) {
+        		message = "No data returned!";
+        	} else {
+        		int start = result.indexOf("<!--IPGWCLIENT_START ");
+        		if (start != -1) {
+        			String success = result.substring(start, start + 32);
+        			if (success.equals("SUCCESS=YES")) {
+        				login = false;
+        			}
+        			
+        			start = result.indexOf("<table");
+                	int end = result.lastIndexOf("</table>") + 8;
+                	if (start != -1) {
+                		String table = result.substring(start, end);
+                		message = table;
+                	}
+        			
+        		} else {
+        			message = "No information returned!";
+        		}
+        	}     
         	
-        	String message = table;
 	        messageArea.loadData(message, "text/html; charset=UTF-8", null);
-            
-            login = false;
        }
     } 
     

@@ -3,7 +3,6 @@
 
     <string name="app_name">IPGateway</string>
     <string name="action_about">About</string>
-    <string name="hello_world">Hello world!</string>
     <string name="username_hint">username</string>
     <string name="password_hint">password</string>
     <string name="global_access">Global Access</string>

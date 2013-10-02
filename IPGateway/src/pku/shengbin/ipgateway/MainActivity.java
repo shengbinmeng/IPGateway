@@ -169,14 +169,15 @@ public class MainActivity extends Activity {
         	}
         	
         	String message = MainActivity.this.getString(R.string.something_wrong);
+        	login = false;
         	if (result.isEmpty()) {
         		message = MainActivity.this.getString(R.string.no_data);
         	} else {
         		int start = result.indexOf("<!--IPGWCLIENT_START ") + "<!--IPGWCLIENT_START ".length();
-        		int end = result.indexOf("<IPGWCLIENT_END-->");
+        		int end = result.indexOf("IPGWCLIENT_END-->");
         		if (end != -1) {
             		String information = result.substring(start, end);
-        			String success = information.substring(0, 10);
+        			String success = information.substring(0, 11);
         			if (success.equals("SUCCESS=YES")) {
         				login = true;
         			} else if (information.substring(information.indexOf("REASON=")).contains("连接数超过")){

@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
@@ -90,8 +91,21 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+	
+	
     
-    /*
+    @Override
+	public boolean onContextItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+    	if (item.getItemId() == R.id.action_about) {
+    		MessageBox.show(this, this.getString(R.string.about_ipgateway), this.getString(R.string.about_message));
+    	}
+		return super.onContextItemSelected(item);
+	}
+
+
+
+	/*
     https://its.pku.edu.cn:5428/ipgatewayofpku?uid=1101111141&password=pas&operation=connect&range=2&timeout=2
     operation: connect, disconnect, disconnectall
     range: 1(fee), 2(free)
@@ -101,20 +115,20 @@ public class MainActivity extends Activity {
     	ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 	    if (networkInfo == null || networkInfo.isConnected() == false) {
-	    	Toast.makeText(MainActivity.this, "No Connection!", Toast.LENGTH_SHORT).show();
+	    	Toast.makeText(MainActivity.this, this.getString(R.string.no_connection), Toast.LENGTH_SHORT).show();
 			return ;
 	    }
     	String username = editUser.getText().toString();
     	String password = editPass.getText().toString();
     	
 	    if (username.isEmpty() || password.isEmpty()) {
-	    	String message = "Input username and password!";
+	    	String message = this.getString(R.string.please_input);
 	        messageArea.loadData(message, "text/html; charset=UTF-8", null);
 
 			return ;
 	    }
 	    
-	    String message = "Logging in...";
+	    String message = this.getString(R.string.logging_in);
         messageArea.loadData(message, "text/html; charset=UTF-8", null);
 	    
 	    int range = 2;

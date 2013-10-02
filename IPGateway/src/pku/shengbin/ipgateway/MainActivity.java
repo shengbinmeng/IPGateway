@@ -27,6 +27,8 @@ public class MainActivity extends Activity {
 	private WebView messageArea = null;
 	private EditText editUser, editPass;
 	private boolean login = false;
+	private boolean disconnectAll = false;
+
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,12 +173,14 @@ public class MainActivity extends Activity {
 							@Override
 							public void onClick(DialogInterface arg0, int arg1) {
 								// TODO Auto-generated method stub
+								disconnectAll = true;
 							}
         				};
         				DialogInterface.OnClickListener cancel_listener = new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface arg0, int arg1) {
 								// TODO Auto-generated method stub
+								disconnectAll = false;
 							}
         				};
         				MessageBox.show(MainActivity.this, "提示", "你已经达到最大连接数。是否断开其他连接并在此终端上重新连接？", ok_listener, cancel_listener);
@@ -194,7 +198,47 @@ public class MainActivity extends Activity {
         		}
         	}     
         	
-	        messageArea.loadData(message, "text/html; charset=UTF-8", null);
+        	if (disconnectAll) {
+				String username = editUser.getText().toString();
+		    	String password = editPass.getText().toString();
+		    	String disconnectAllUrl = "https://its.pku.edu.cn:5428/ipgatewayofpku?uid=" + username + "&password=" + password + "&operation=disconnectall&range=2&timeout=2";
+		    	byte[] byteArray = HttpAccessor.getContentBytesFromUrl(disconnectAllUrl);
+	            result = "";
+	            try {
+	            	if (byteArray != null) {
+	    				result = new String(byteArray, "GBK");
+	            	}
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+	            
+	            message = "Something wrong! Sorry.";
+	        	if (result.isEmpty()) {
+	        		message = "No data returned!";
+	        	} else {
+	        		int start = result.indexOf("<!--IPGWCLIENT_START ");
+	        		if (start != -1) {
+	        			String success = result.substring(start, start + 32);
+	        			if (success.equals("SUCCESS=YES")) {
+	        				doLogin();
+	        				disconnectAll = false;
+	        				return;
+	        			}
+	        			start = result.indexOf("<table");
+	                	int end = result.lastIndexOf("</table>") + 8;
+	                	if (start != -1) {
+	                		String table = result.substring(start, end);
+	                		message = table;
+	                	}
+	        		} else {
+	        			message = "No information returned!";
+	        		}
+	        	}
+		        messageArea.loadData(message, "text/html; charset=UTF-8", null);
+				disconnectAll = false;
+			} else {
+				messageArea.loadData(message, "text/html; charset=UTF-8", null);
+			}
        }
     }
     

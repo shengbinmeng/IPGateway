@@ -91,19 +91,16 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-	
-	
     
+	
     @Override
-	public boolean onContextItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
     	if (item.getItemId() == R.id.action_about) {
     		MessageBox.show(this, this.getString(R.string.about_ipgateway), this.getString(R.string.about_message));
     	}
-		return super.onContextItemSelected(item);
+		return super.onOptionsItemSelected(item);
 	}
-
-
 
 	/*
     https://its.pku.edu.cn:5428/ipgatewayofpku?uid=1101111141&password=pas&operation=connect&range=2&timeout=2
@@ -171,9 +168,9 @@ public class MainActivity extends Activity {
 	        	editor.commit();
         	}
         	
-        	String message = "Something wrong! Sorry.";
+        	String message = MainActivity.this.getString(R.string.something_wrong);
         	if (result.isEmpty()) {
-        		message = "No data returned!";
+        		message = MainActivity.this.getString(R.string.no_data);
         	} else {
         		int start = result.indexOf("<!--IPGWCLIENT_START ") + "<!--IPGWCLIENT_START ".length();
         		int end = result.indexOf("<IPGWCLIENT_END-->");
@@ -197,7 +194,7 @@ public class MainActivity extends Activity {
 								disconnectAll = false;
 							}
         				};
-        				MessageBox.show(MainActivity.this, "提示", "你已经达到最大连接数。是否断开其他连接并在此终端上重新连接？", ok_listener, cancel_listener);
+        				MessageBox.show(MainActivity.this, MainActivity.this.getString(R.string.tip_title), MainActivity.this.getString(R.string.reach_max_connection), ok_listener, cancel_listener);
         			}
         			
         			start = result.indexOf("<table");
@@ -208,7 +205,7 @@ public class MainActivity extends Activity {
                 	}
         			
         		} else {
-        			message = "No information returned!";
+        			message = MainActivity.this.getString(R.string.no_information);
         		}
         	}     
         	
@@ -226,9 +223,9 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 	            
-	            message = "Something wrong! Sorry.";
+	            message = MainActivity.this.getString(R.string.something_wrong);
 	        	if (result.isEmpty()) {
-	        		message = "No data returned!";
+	        		message = MainActivity.this.getString(R.string.no_data);
 	        	} else {
 	        		int start = result.indexOf("<!--IPGWCLIENT_START ");
 	        		if (start != -1) {
@@ -245,7 +242,7 @@ public class MainActivity extends Activity {
 	                		message = table;
 	                	}
 	        		} else {
-	        			message = "No information returned!";
+	        			message = MainActivity.this.getString(R.string.no_information);
 	        		}
 	        	}
 		        messageArea.loadData(message, "text/html; charset=UTF-8", null);
@@ -259,12 +256,12 @@ public class MainActivity extends Activity {
     public void doLogout() {
     	
     	if (login == false) {
-    	    String message = "No Successful Login!";
+    	    String message = MainActivity.this.getString(R.string.no_login);
             messageArea.loadData(message, "text/html; charset=UTF-8", null);
 			return ;
     	}
     	
-    	String message = "Logging out...";
+    	String message = MainActivity.this.getString(R.string.logging_out);
         messageArea.loadData(message, "text/html; charset=UTF-8", null);
 
     	String username = editUser.getText().toString();
@@ -308,9 +305,9 @@ public class MainActivity extends Activity {
 	            editPass.setText("");
         	}
         	
-        	String message = "Something wrong! Sorry.";
+        	String message = MainActivity.this.getString(R.string.something_wrong);
         	if (result.isEmpty()) {
-        		message = "No data returned!";
+        		message = MainActivity.this.getString(R.string.no_data);
         	} else {
         		int start = result.indexOf("<!--IPGWCLIENT_START ");
         		if (start != -1) {
@@ -327,7 +324,7 @@ public class MainActivity extends Activity {
                 	}
         			
         		} else {
-        			message = "No information returned!";
+        			message = MainActivity.this.getString(R.string.no_information);
         		}
         	}     
         	

@@ -25,7 +25,7 @@
     <string name="logging_out" tools:ignore="TypographyEllipsis">Logging out...</string>
     
     <string name="about_ipgateway">About IPGateway</string>
-    <string name="about_message">IPGatewat is a little app to login to the IP gateway of Peking University. For more information, visit http://www.shengbin.me/ipgateway</string>
+    <string name="about_message">IPGateway is a little app for logging to the IP gateway of Peking University. For more information, visit http://www.shengbin.me/ipgateway</string>
     
 
 </resources>

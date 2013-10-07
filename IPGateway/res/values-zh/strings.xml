@@ -23,6 +23,6 @@
     <string name="no_login">尚未登录!</string>
     <string name="logging_out" tools:ignore="TypographyEllipsis">正在断开连接...</string>
 	<string name="about_ipgateway">关于IPGateway</string>
-    <string name="about_message">IPGateway是一个用于登录北京大学校园网IP网关的小应用。更多信息可访问  http://www.shengbin.me/ipgateway</string>
+    <string name="about_message">IPGateway是一个用于登录北京大学校园网IP网关的小应用。更多信息可访问  http://www.shengbin.me/apps/ipgateway</string>
 
 </resources>

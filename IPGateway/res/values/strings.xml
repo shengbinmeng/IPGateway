@@ -26,5 +26,12 @@
     <string name="about_ipgateway">About IPGateway</string>
     <string name="about_message">IPGateway is a little app for logging to the IP gateway of Peking University. For more information, visit http://www.shengbin.me/apps/ipgateway</string>
     
+    <string name="egg">Egg #1</string>
+    <string name="egg_message">Dedicated to Cuicui, my love.</string>
+    <string name="well">Well</string>
+    <string name="bless">Bless</string>
+        
+    
+    
 
 </resources>

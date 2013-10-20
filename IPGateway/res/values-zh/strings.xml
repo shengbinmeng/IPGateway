@@ -25,4 +25,8 @@
 	<string name="about_ipgateway">关于IPGateway</string>
     <string name="about_message">IPGateway是一个用于登录北京大学校园网IP网关的小应用。更多信息可访问  http://www.shengbin.me/apps/ipgateway</string>
 
+    <string name="egg">彩蛋 #1</string>
+    <string name="egg_message">献给翠翠，我的女朋友。</string>
+    <string name="well">嗯</string>
+    <string name="bless">祝福</string>
 </resources>

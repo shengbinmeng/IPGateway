@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -21,6 +22,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -97,7 +99,28 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
     	if (item.getItemId() == R.id.action_about) {
-    		MessageBox.show(this, this.getString(R.string.about_ipgateway), this.getString(R.string.about_message));
+    		//MessageBox.show(this, this.getString(R.string.about_ipgateway), this.getString(R.string.about_message));
+    		//the egg
+    		AlertDialog dialog = new AlertDialog.Builder(this).setMessage(this.getString(R.string.about_message)).setTitle(this.getString(R.string.about_ipgateway))
+			.setCancelable(false)
+			.setPositiveButton(android.R.string.ok, null)
+			.create();
+    		dialog.show();
+
+    		final int alertTitleId = this.getResources().getIdentifier( "alertTitle", "id", "android" );
+    		TextView textView = (TextView) dialog.findViewById(alertTitleId);
+    		textView.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View arg0) {
+					new AlertDialog.Builder(MainActivity.this).setMessage(MainActivity.this.getString(R.string.egg_message)).setTitle(MainActivity.this.getString(R.string.egg))
+					.setCancelable(true)
+					.setPositiveButton(MainActivity.this.getString(R.string.bless), null)
+					.setNegativeButton(MainActivity.this.getString(R.string.well), null)
+					.show();
+				}
+    			
+    		});
+    		
     	}
 		return super.onOptionsItemSelected(item);
 	}

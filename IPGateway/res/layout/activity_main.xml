@@ -9,94 +9,95 @@
     >
     
     <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".MainActivity" >
-
-	<TextView
-	    android:id="@+id/textView_title"
-	    android:layout_width="280dp"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentTop="true"
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="25dp"
-	    android:text="@string/title"
-	    android:gravity="center"
-	    android:textAppearance="?android:attr/textAppearanceLarge" >
-
-	</TextView>
-
-	<EditText
-        android:id="@+id/editText_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/username_hint">
-   	</EditText>
-
-   	<EditText
-        android:id="@+id/editText_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_user"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:ems="10"
-        android:hint="@string/password_hint"
-        android:inputType="textPassword" >
-    </EditText>
-    
-    <CheckBox
-        android:id="@+id/checkBox_remember"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText_pass"
-        android:layout_below="@+id/editText_pass"
-        android:layout_marginTop="18dp"
-        android:text="@string/remember_me" />
-
-    <CheckBox
-        android:id="@+id/checkBox_global"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/checkBox_remember"
-        android:layout_below="@+id/checkBox_remember"
-        android:layout_marginTop="18dp"
-        android:text="@string/global_access" />
-
-	<Button
-	    android:id="@+id/button_logout"
-	    android:layout_width="120dp"
-	    android:layout_height="wrap_content"
-	    android:layout_alignRight="@+id/textView_title"
-	    android:layout_below="@+id/checkBox_global"
-	    android:layout_marginTop="19dp"
-	    android:text="@string/logout" />
-
-	<Button
-	    android:id="@+id/button_login"
-	    android:layout_width="120dp"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBaseline="@+id/button_logout"
-	    android:layout_alignBottom="@+id/button_logout"
-	    android:layout_alignLeft="@+id/textView_title"
-	    android:text="@string/login" />
-	
-	<WebView
-        android:id="@+id/webView_message"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_login"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:clickable="false"
-        android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false">
-    </WebView>
+        android:layout_height="408dp"
+        tools:context=".MainActivity" >
+        
+        <TextView
+            android:id="@+id/textView_title"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/title"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-</RelativeLayout>
+        <EditText
+            android:id="@+id/editText_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_title"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="@string/username_hint" />
+
+        <EditText
+            android:id="@+id/editText_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_user"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword" >
+
+            <requestFocus />
+        </EditText>
+
+        <CheckBox
+            android:id="@+id/checkBox_remember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_pass"
+            android:layout_centerHorizontal="true"
+            android:text="@string/remember_me" />
+
+        <CheckBox
+            android:id="@+id/checkBox_global"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBox_remember"
+            android:layout_below="@+id/checkBox_remember"
+            android:text="@string/global_access" />
+
+        <Button
+            android:id="@+id/button_logout"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_logout_all"
+            android:layout_alignRight="@+id/button_logout_all"
+            android:text="@string/logout" />
+
+        <Button
+            android:id="@+id/button_logout_all"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText_user"
+            android:layout_alignRight="@+id/editText_user"
+            android:layout_below="@+id/button_login"
+            android:text="@string/logout_all" />
+
+        <Button
+            android:id="@+id/button_login"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button_logout_all"
+            android:layout_below="@+id/checkBox_global"
+            android:text="@string/login" />
+
+        
+        <WebView
+            android:id="@+id/webView_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_logout_all"
+            android:layout_marginTop="15dp"
+            android:clickable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+    </RelativeLayout>
+
 </ScrollView>

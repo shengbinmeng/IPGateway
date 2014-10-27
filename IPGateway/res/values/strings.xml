@@ -9,6 +9,7 @@
     <string name="remember_me">Remember Me</string>
     <string name="login">Let Me In</string>
     <string name="logout">Logout</string>
+    <string name="logout_all">Disconnect All</string>
     <string name="title">Login to IPGateway of PKU</string>
     <string name="welcome">Welcome!</string>
 
@@ -22,6 +23,7 @@
     <string name="no_information">No information returned!</string>
     <string name="no_login">No Successful Login!</string>
     <string name="logging_out" tools:ignore="TypographyEllipsis">Logging out...</string>
+    <string name="logging_out_all" tools:ignore="TypographyEllipsis">Closing all...</string>
     
     <string name="about_ipgateway">About IPGateway</string>
     <string name="about_message">IPGateway is a little app for logging to the IP gateway of Peking University. For more information, visit http://www.shengbin.me/apps/ipgateway</string>

@@ -9,6 +9,7 @@
     <string name="remember_me">记住登录用户</string>
     <string name="login">连接</string>
     <string name="logout">断开</string>
+    <string name="logout_all">断开全部连接</string>
     <string name="title">北京大学IP网关登录</string>
     <string name="welcome">欢迎！</string>
 
@@ -22,6 +23,7 @@
     <string name="no_information">未收到有效信息！</string>
     <string name="no_login">尚未登录!</string>
     <string name="logging_out" tools:ignore="TypographyEllipsis">正在断开连接...</string>
+    <string name="logging_out_all" tools:ignore="TypographyEllipsis">正在关闭所有连接...</string>
 	<string name="about_ipgateway">关于IPGateway</string>
     <string name="about_message">IPGateway是一个用于登录北京大学校园网IP网关的小应用。更多信息可访问  http://www.shengbin.me/apps/ipgateway</string>
 
